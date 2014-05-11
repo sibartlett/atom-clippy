@@ -1,0 +1,73 @@
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      {
+        'label': 'Clippy'
+        'submenu': [
+            {
+              'label': 'Toggle'
+              'command': 'clippy:toggle'
+            },
+            {
+              'label': 'Toggle Sounds'
+              'command': 'clippy:toggle-sounds'
+            },
+            {
+              'label': 'Animate'
+              'command': 'clippy:animate'
+            },
+            {
+              'label': 'Switch Agent'
+              'submenu': [
+                {
+                  'label': 'Clippy',
+                  'command': 'clippy:switch-agent-to-clippy'
+                },
+                {
+                  'label': 'Bonzi',
+                  'command': 'clippy:switch-agent-to-bonzi'
+                },
+                {
+                  'label': 'F1',
+                  'command': 'clippy:switch-agent-to-f1'
+                },
+                {
+                  'label': 'Genie',
+                  'command': 'clippy:switch-agent-to-genie'
+                },
+                {
+                  'label': 'Genius',
+                  'command': 'clippy:switch-agent-to-genius'
+                },
+                {
+                  'label': 'Links',
+                  'command': 'clippy:switch-agent-to-links'
+                },
+                {
+                  'label': 'Merlin',
+                  'command': 'clippy:switch-agent-to-merlin'
+                },
+                {
+                  'label': 'Peedy',
+                  'command': 'clippy:switch-agent-to-peedy'
+                },
+                {
+                  'label': 'Rocky',
+                  'command': 'clippy:switch-agent-to-rocky'
+                },
+                {
+                  'label': 'Rover',
+                  'command': 'clippy:switch-agent-to-rover'
+                }
+              ]
+            }
+        ]
+      }
+    ]
+  }
+]
+'context-menu':
+  '.clippy':
+    'Animate': 'clippy:animate'
+    'Hide': 'clippy:toggle'

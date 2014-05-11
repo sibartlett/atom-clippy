@@ -1,0 +1,23 @@
+{
+  "name": "clippy",
+  "version": "0.0.0",
+  "author": {
+    "name": "Simon Bartlett",
+    "email": "simon@sibartlett.com"
+  },
+  "description": "Clippy for your atom.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sibartlett/atom-clippy"
+  },
+  "license": "MIT",
+  "keywords": [
+    "clippy",
+    "office assistant"
+  ],
+  "main": "./lib/index",
+  "dependencies": {},
+  "engines": {
+    "atom": "*"
+  }
+}
