@@ -50,10 +50,28 @@ switchAgent = (name) ->
 
 module.exports =
 
-  configDefaults:
-    showOnStartup: true
-    playSounds: true
-    agent: 'Clippy'
+  config:
+    showOnStartup:
+      type: 'boolean'
+      default: true
+    playSounds:
+      type: 'boolean'
+      default: true
+    agent:
+      type: 'string'
+      default: 'Clippy'
+      enum: [
+        'Clippy',
+        'Bonzi',
+        'F1',
+        'Genie',
+        'Genius',
+        'Links',
+        'Merlin',
+        'Peedy',
+        'Rocky',
+        'Rover'
+      ]
 
   activate: ->
 

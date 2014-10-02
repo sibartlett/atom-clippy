@@ -18,6 +18,6 @@
   "main": "./lib/index",
   "dependencies": {},
   "engines": {
-    "atom": "*"
+    "atom": ">=0.133.0"
   }
 }
