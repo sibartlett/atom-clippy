@@ -1,4 +1,4 @@
-$ = require('atom').$
+$ = require 'jquery'
 Queue = require './queue'
 Animator = require './animator'
 Balloon = require './balloon'
@@ -10,8 +10,7 @@ class Agent
     @path = path
     @_queue = new Queue($.proxy(@_onQueueEmpty, this))
     @_el = $("<div class=\"clippy\"></div>").hide()
-    # $(document.body).append @_el
-    atom.workspaceView.append @_el
+    $(document.body).append @_el
     @_animator = new Animator(@_el, path, data, sounds)
     @_balloon = new Balloon(@_el)
     @_setupEvents()

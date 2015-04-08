@@ -1,4 +1,4 @@
-$ = require('atom').$
+$ = require 'jquery'
 Agent = require './agent'
 
 ASSETS_PATH = 'atom://clippy/agents/'

@@ -1,4 +1,4 @@
-$ = require('atom').$
+$ = require 'jquery'
 
 class Balloon
 
@@ -10,8 +10,7 @@ class Balloon
     @_hidden = true
     @_balloon = $("<div class=\"clippy-balloon\"><div class=\"clippy-tip\"></div><div class=\"clippy-content\"></div></div> ").hide()
     @_content = @_balloon.find(".clippy-content")
-    # $(document.body).append @_balloon
-    atom.workspaceView.append @_balloon
+    $(document.body).append @_balloon
 
   reposition: ->
     sides = [

@@ -75,42 +75,42 @@ module.exports =
 
   activate: ->
 
-    # atom.workspaceView.command 'clippy:show', show
-    # atom.workspaceView.command 'clippy:hide', hide
-    atom.workspaceView.command 'clippy:toggle', toggleAgent
-    atom.workspaceView.command 'clippy:toggle-sounds', toggleSounds
+    # atom.commands.add 'atom-text-editor', 'clippy:show', show
+    # atom.commands.add 'atom-text-editor', 'clippy:hide', hide
+    atom.commands.add 'atom-text-editor', 'clippy:toggle', toggleAgent
+    atom.commands.add 'atom-text-editor', 'clippy:toggle-sounds', toggleSounds
 
-    atom.workspaceView.command 'clippy:switch-agent-to-clippy', ->
+    atom.commands.add 'atom-text-editor', 'clippy:switch-agent-to-clippy', ->
       switchAgent 'Clippy'
 
-    atom.workspaceView.command 'clippy:switch-agent-to-bonzi', ->
+    atom.commands.add 'atom-text-editor', 'clippy:switch-agent-to-bonzi', ->
       switchAgent 'Bonzi'
 
-    atom.workspaceView.command 'clippy:switch-agent-to-f1', ->
+    atom.commands.add 'atom-text-editor', 'clippy:switch-agent-to-f1', ->
       switchAgent 'F1'
 
-    atom.workspaceView.command 'clippy:switch-agent-to-genie', ->
+    atom.commands.add 'atom-text-editor', 'clippy:switch-agent-to-genie', ->
       switchAgent 'Genie'
 
-    atom.workspaceView.command 'clippy:switch-agent-to-genius', ->
+    atom.commands.add 'atom-text-editor', 'clippy:switch-agent-to-genius', ->
       switchAgent 'Genius'
 
-    atom.workspaceView.command 'clippy:switch-agent-to-links', ->
+    atom.commands.add 'atom-text-editor', 'clippy:switch-agent-to-links', ->
       switchAgent 'Links'
 
-    atom.workspaceView.command 'clippy:switch-agent-to-merlin', ->
+    atom.commands.add 'atom-text-editor', 'clippy:switch-agent-to-merlin', ->
       switchAgent 'Merlin'
 
-    atom.workspaceView.command 'clippy:switch-agent-to-peedy', ->
+    atom.commands.add 'atom-text-editor', 'clippy:switch-agent-to-peedy', ->
       switchAgent 'Peedy'
 
-    atom.workspaceView.command 'clippy:switch-agent-to-rocky', ->
+    atom.commands.add 'atom-text-editor', 'clippy:switch-agent-to-rocky', ->
       switchAgent 'Rocky'
 
-    atom.workspaceView.command 'clippy:switch-agent-to-rover', ->
+    atom.commands.add 'atom-text-editor', 'clippy:switch-agent-to-rover', ->
       switchAgent 'Rover'
 
-    atom.workspaceView.command 'clippy:animate', ->
+    atom.commands.add 'atom-text-editor', 'clippy:animate', ->
       console.log 'animating'
       animate()
 

@@ -16,7 +16,9 @@
     "office assistant"
   ],
   "main": "./lib/index",
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^2"
+  },
   "engines": {
     "atom": ">=0.133.0"
   }
