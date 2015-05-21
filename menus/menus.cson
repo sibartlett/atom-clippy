@@ -68,6 +68,7 @@
   }
 ]
 'context-menu':
-  '.clippy':
-    'Animate': 'clippy:animate'
-    'Hide': 'clippy:toggle'
+  '.clippy': [
+      {label: 'Animate', command: 'clippy:animate'},
+      {label: 'Hide', command: 'clippy:toggle'}
+    ]

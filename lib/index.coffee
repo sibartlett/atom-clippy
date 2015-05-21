@@ -23,7 +23,9 @@ hide = ->
     agent.hide()
 
 animate = ->
+  console.log '='
   withAgent (agent) ->
+    console.log '==', agent
     agent.animate()
 
 toggleAgent = ->
@@ -74,45 +76,43 @@ module.exports =
       ]
 
   activate: ->
+    
+    atom.commands.add 'atom-workspace', 'clippy:toggle', toggleAgent
+    atom.commands.add 'atom-workspace', 'clippy:toggle-sounds', toggleSounds
+    atom.commands.add 'atom-workspace, .clippy', 'clippy:animate', animate
 
-    # atom.commands.add 'atom-text-editor', 'clippy:show', show
-    # atom.commands.add 'atom-text-editor', 'clippy:hide', hide
-    atom.commands.add 'atom-text-editor', 'clippy:toggle', toggleAgent
-    atom.commands.add 'atom-text-editor', 'clippy:toggle-sounds', toggleSounds
-
-    atom.commands.add 'atom-text-editor', 'clippy:switch-agent-to-clippy', ->
+    atom.commands.add 'atom-workspace', 'clippy:switch-agent-to-clippy', ->
       switchAgent 'Clippy'
 
-    atom.commands.add 'atom-text-editor', 'clippy:switch-agent-to-bonzi', ->
+    atom.commands.add 'atom-workspace', 'clippy:switch-agent-to-bonzi', ->
       switchAgent 'Bonzi'
 
-    atom.commands.add 'atom-text-editor', 'clippy:switch-agent-to-f1', ->
+    atom.commands.add 'atom-workspace', 'clippy:switch-agent-to-f1', ->
       switchAgent 'F1'
 
-    atom.commands.add 'atom-text-editor', 'clippy:switch-agent-to-genie', ->
+    atom.commands.add 'atom-workspace', 'clippy:switch-agent-to-genie', ->
       switchAgent 'Genie'
 
-    atom.commands.add 'atom-text-editor', 'clippy:switch-agent-to-genius', ->
+    atom.commands.add 'atom-workspace', 'clippy:switch-agent-to-genius', ->
       switchAgent 'Genius'
 
-    atom.commands.add 'atom-text-editor', 'clippy:switch-agent-to-links', ->
+    atom.commands.add 'atom-workspace', 'clippy:switch-agent-to-links', ->
       switchAgent 'Links'
 
-    atom.commands.add 'atom-text-editor', 'clippy:switch-agent-to-merlin', ->
+    atom.commands.add 'atom-workspace', 'clippy:switch-agent-to-merlin', ->
       switchAgent 'Merlin'
 
-    atom.commands.add 'atom-text-editor', 'clippy:switch-agent-to-peedy', ->
+    atom.commands.add 'atom-workspace', 'clippy:switch-agent-to-peedy', ->
       switchAgent 'Peedy'
 
-    atom.commands.add 'atom-text-editor', 'clippy:switch-agent-to-rocky', ->
+    atom.commands.add 'atom-workspace', 'clippy:switch-agent-to-rocky', ->
       switchAgent 'Rocky'
 
-    atom.commands.add 'atom-text-editor', 'clippy:switch-agent-to-rover', ->
+    atom.commands.add 'atom-workspace', 'clippy:switch-agent-to-rover', ->
       switchAgent 'Rover'
 
-    atom.commands.add 'atom-text-editor', 'clippy:animate', ->
-      console.log 'animating'
-      animate()
+    atom.commands.add '.clippy', 'clippy:animate', animate
+    atom.commands.add '.clippy', 'clippy:toggle', toggleAgent
 
     if atom.config.get('clippy.showOnStartup')
       setTimeout show, 1500
