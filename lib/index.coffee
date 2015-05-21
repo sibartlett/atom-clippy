@@ -1,54 +1,4 @@
-loader = require './loader'
-
-firstShow = true
-currentAgent = null
-
-withAgent = (cb) ->
-  if (currentAgent)
-    cb currentAgent
-  else
-    loader atom.config.get('clippy.agent'), (agent) ->
-      currentAgent = agent
-      cb currentAgent
-
-show = ->
-  withAgent (agent) ->
-    agent.show()
-    if firstShow
-      firstShow = false
-      agent.speak('Hello, I\'m here to help you use Atom.')
-
-hide = ->
-  withAgent (agent) ->
-    agent.hide()
-
-animate = ->
-  console.log '='
-  withAgent (agent) ->
-    console.log '==', agent
-    agent.animate()
-
-toggleAgent = ->
-  withAgent (agent) ->
-    if agent._hidden
-      agent.show()
-      if firstShow
-        firstShow = false
-        agent.speak('Hello, I\'m here to help you use Atom.')
-    else
-      agent.hide()
-
-toggleSounds = ->
-  val = atom.config.get('clippy.playSounds')
-  atom.config.set('clippy.playSounds', !val)
-
-switchAgent = (name) ->
-  withAgent (agent) ->
-    agent.hide false, ->
-      currentAgent = null
-      firstShow = true
-      atom.config.set('clippy.agent', name)
-      show()
+agent = require './agent-manager'
 
 module.exports =
 
@@ -75,44 +25,47 @@ module.exports =
         'Rover'
       ]
 
+  service: ->
+    agent.service
+
   activate: ->
-    
-    atom.commands.add 'atom-workspace', 'clippy:toggle', toggleAgent
-    atom.commands.add 'atom-workspace', 'clippy:toggle-sounds', toggleSounds
-    atom.commands.add 'atom-workspace, .clippy', 'clippy:animate', animate
+
+    atom.commands.add 'atom-workspace', 'clippy:toggle', agent.toggleAgent
+    atom.commands.add 'atom-workspace', 'clippy:toggle-sounds', agent.toggleSounds
+    atom.commands.add 'atom-workspace, .clippy', 'clippy:animate', agent.service.animate
 
     atom.commands.add 'atom-workspace', 'clippy:switch-agent-to-clippy', ->
-      switchAgent 'Clippy'
+      agent.showAgent 'Clippy'
 
     atom.commands.add 'atom-workspace', 'clippy:switch-agent-to-bonzi', ->
-      switchAgent 'Bonzi'
+      agent.showAgent 'Bonzi'
 
     atom.commands.add 'atom-workspace', 'clippy:switch-agent-to-f1', ->
-      switchAgent 'F1'
+      agent.showAgent 'F1'
 
     atom.commands.add 'atom-workspace', 'clippy:switch-agent-to-genie', ->
-      switchAgent 'Genie'
+      agent.showAgent 'Genie'
 
     atom.commands.add 'atom-workspace', 'clippy:switch-agent-to-genius', ->
-      switchAgent 'Genius'
+      agent.showAgent 'Genius'
 
     atom.commands.add 'atom-workspace', 'clippy:switch-agent-to-links', ->
-      switchAgent 'Links'
+      agent.showAgent 'Links'
 
     atom.commands.add 'atom-workspace', 'clippy:switch-agent-to-merlin', ->
-      switchAgent 'Merlin'
+      agent.showAgent 'Merlin'
 
     atom.commands.add 'atom-workspace', 'clippy:switch-agent-to-peedy', ->
-      switchAgent 'Peedy'
+      agent.showAgent 'Peedy'
 
     atom.commands.add 'atom-workspace', 'clippy:switch-agent-to-rocky', ->
-      switchAgent 'Rocky'
+      agent.showAgent 'Rocky'
 
     atom.commands.add 'atom-workspace', 'clippy:switch-agent-to-rover', ->
-      switchAgent 'Rover'
+      agent.showAgent 'Rover'
 
-    atom.commands.add '.clippy', 'clippy:animate', animate
-    atom.commands.add '.clippy', 'clippy:toggle', toggleAgent
+    atom.commands.add '.clippy', 'clippy:animate', agent.service.animate
+    atom.commands.add '.clippy', 'clippy:toggle', agent.toggleAgent
 
     if atom.config.get('clippy.showOnStartup')
-      setTimeout show, 1500
+      setTimeout agent.showAgent, 1500
