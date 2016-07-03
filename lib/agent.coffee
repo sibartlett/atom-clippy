@@ -141,9 +141,9 @@ class Agent
       @resume()
       @play "Show"
 
-  speak: (text, hold) ->
+  speak: (text, opts, hold) ->
     @_addToQueue ((complete) ->
-      @_balloon.speak complete, text, hold
+      @_balloon.speak complete, text, opts, hold
     ), this
 
   closeBalloon: ->
@@ -186,12 +186,14 @@ class Agent
   Play a random animation
   @return {jQuery.Deferred}
   ###
-  animate: ->
+  animate: (name) ->
     animations = @animations()
-    anim = animations[Math.floor(Math.random() * animations.length)]
+
+    anim = animations[animations.indexOf(name)]
+    anim ?= animations[Math.floor(Math.random() * animations.length)]
 
     # skip idle animations
-    return @animate()  if anim.indexOf("Idle") is 0
+    return @animate()  if !name && anim.indexOf("Idle") is 0
     @play anim
 
 

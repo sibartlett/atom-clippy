@@ -53,9 +53,9 @@ service =
     if currentAgent and not currentAgent._hidden
       currentAgent.animate animation
 
-  speak: (text) ->
+  speak: (text, opts) ->
     if currentAgent and not currentAgent._hidden
-      currentAgent.speak text
+      currentAgent.speak text, opts
 
 Object.defineProperty(service, 'animations', {
   enumerable: true,

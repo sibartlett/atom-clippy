@@ -83,7 +83,7 @@ class Balloon
     return true  if (top + bH + m) > wH or (left + bW + m) > wW
     false
 
-  speak: (complete, text, hold) ->
+  speak: (complete, text, opts={}, hold=false) ->
     @_hidden = false
     @show()
     c = @_content
@@ -94,6 +94,9 @@ class Balloon
 
     # add the text
     c.text text
+    if opts.prompt
+      opts.prompt = @promptLinks(opts.prompt, => complete(); @_finishHideBalloon())
+      @appendPrompt(c, opts.prompt.map (e) -> e.clone())
 
     # set height
     c.height c.height()
@@ -101,7 +104,7 @@ class Balloon
     c.text ""
     @reposition()
     @_complete = complete
-    @_sayWords text, hold, complete
+    @_sayWords text, opts, hold, complete
 
   show: ->
     return if @_hidden
@@ -119,7 +122,7 @@ class Balloon
     @_hidden = true
     @_hiding = null
 
-  _sayWords: (text, hold, complete) ->
+  _sayWords: (text, opts, hold, complete) ->
     @_active = true
     @_hold = hold
     words = text.split(/[^\S-]/)
@@ -132,7 +135,9 @@ class Balloon
         delete @_addWord
 
         @_active = false
-        unless @_hold
+        if opts.prompt
+          @appendPrompt(el, opts.prompt)
+        else if !@_hold
           complete()
           @hide()
       else
@@ -141,6 +146,17 @@ class Balloon
         @_loop = window.setTimeout($.proxy(@_addWord, this), time)
     , this)
     @_addWord()
+
+  appendPrompt: (view, links) ->
+    div = $("<div class='prompt'>").append(links)
+    view.append("<br><br><br>").append(div)
+
+  promptLinks: (promptMap, complete) ->
+    for label, fn of promptMap then do =>
+      oldFn = fn
+      $('<a href="#">').text(label).on 'click', ->
+        complete()
+        setTimeout -> oldFn()
 
   close: ->
     if @_active
