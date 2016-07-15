@@ -16,6 +16,9 @@
     "office assistant"
   ],
   "main": "./lib/index",
+  "scripts": {
+    "test": "eslint ."
+  },
   "dependencies": {
     "jquery": "^2"
   },
@@ -29,5 +32,8 @@
         "1.0.0": "service"
       }
     }
+  },
+  "devDependencies": {
+    "eslint": "^3.0.1"
   }
 }
