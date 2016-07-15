@@ -11,7 +11,7 @@ This requires that the user has the Clippy package installed.
 
 In your `package.json` file add the following:
 
-```
+```json
   "consumedServices": {
     "clippy": {
       "versions": {
@@ -23,7 +23,7 @@ In your `package.json` file add the following:
 
 Then in your plugin code add a `consumeClippyService` method (also returning a disposable):
 
-```
+```coffee
 {Disposable} = require 'atom'
 
 clippy = null
