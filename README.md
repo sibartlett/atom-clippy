@@ -1,5 +1,7 @@
 # Clippy
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/sibartlett/atom-clippy.svg)](https://greenkeeper.io/)
+
 Clippy (and friends) for your [Atom](http://atom.io).
 
 ![Clippy and friends](http://i.imgur.com/2hvJCEF.jpg)
